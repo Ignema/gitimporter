@@ -5,7 +5,7 @@
     "baseName": "gitimporter",
     "packageName": "com.gitimporter",
     "packageFolder": "com/gitimporter",
-    "serverPort": 8080,
+    "serverPort": "8080",
     "serviceDiscoveryType": false,
     "authenticationType": "jwt",
     "uaaBaseName": "../uaa",
@@ -24,7 +24,7 @@
     "testFrameworks": [],
     "enableTranslation": true,
     "nativeLanguage": "en",
-    "languages": ["en"],
+    "languages": ["en", "fr"],
     "clientFramework": "angularX",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "6.10.1",
@@ -36,9 +36,14 @@
     "dtoSuffix": "DTO",
     "otherModules": [],
     "blueprints": [],
-    "prettierJava": true
+    "prettierJava": true,
+    "skipUserManagement": false,
+    "skipClient": false,
+    "skipServer": false,
+    "clientThemeVariant": ""
   },
   "git-provider": "GitHub",
   "git-company": "Ignema",
-  "repository-name": "gitimporter"
+  "repository-name": "gitimporter",
+  "entities": ["GitInfo", "Issue"]
 }

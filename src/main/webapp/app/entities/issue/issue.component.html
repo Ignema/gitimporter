@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="gitimporterApp.issue.home.title">Issues</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-issue" [routerLink]="['/issue/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="gitimporterApp.issue.home.createLabel">
+            Create a new Issue
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="issues?.length === 0">
+        <span jhiTranslate="gitimporterApp.issue.home.notFound">No issues found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="issues && issues.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="issueId"><span jhiTranslate="gitimporterApp.issue.issueId">Issue Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="issueOrder"><span jhiTranslate="gitimporterApp.issue.issueOrder">Issue Order</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="issueTitle"><span jhiTranslate="gitimporterApp.issue.issueTitle">Issue Title</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="state"><span jhiTranslate="gitimporterApp.issue.state">State</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="author"><span jhiTranslate="gitimporterApp.issue.author">Author</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="description"><span jhiTranslate="gitimporterApp.issue.description">Description</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdAt"><span jhiTranslate="gitimporterApp.issue.createdAt">Created At</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedAt"><span jhiTranslate="gitimporterApp.issue.updatedAt">Updated At</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="closedAt"><span jhiTranslate="gitimporterApp.issue.closedAt">Closed At</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="closedBy"><span jhiTranslate="gitimporterApp.issue.closedBy">Closed By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let issue of issues ;trackBy: trackId">
+                    <td><a [routerLink]="['/issue', issue.id, 'view']">{{ issue.id }}</a></td>
+                    <td>{{ issue.issueId }}</td>
+                    <td>{{ issue.issueOrder }}</td>
+                    <td>{{ issue.issueTitle }}</td>
+                    <td>{{ issue.state }}</td>
+                    <td>{{ issue.author }}</td>
+                    <td>{{ issue.description }}</td>
+                    <td>{{ issue.createdAt | date:'medium' }}</td>
+                    <td>{{ issue.updatedAt | date:'medium' }}</td>
+                    <td>{{ issue.closedAt | date:'medium' }}</td>
+                    <td>{{ issue.closedBy }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/issue', issue.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/issue', issue.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(issue)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="issues && issues.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

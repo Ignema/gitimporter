@@ -204,6 +204,8 @@ dependencies {
         implementation platform("io.github.jhipster:jhipster-dependencies:${jhipster_dependencies_version}")
     }
 
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
     // Use ", version: jhipster_dependencies_version, changing: true" if you want
     // to use a SNAPSHOT release instead of a stable release
     implementation group: "io.github.jhipster", name: "jhipster-framework"

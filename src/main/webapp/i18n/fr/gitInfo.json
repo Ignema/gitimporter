@@ -1,0 +1,24 @@
+{
+  "gitimporterApp": {
+    "gitInfo": {
+      "home": {
+        "title": "GitInfos",
+        "createLabel": "Créer un nouveau Git Info",
+        "createOrEditLabel": "Créer ou éditer un Git Info",
+        "notFound": "Aucun Git Info trouvé"
+      },
+      "created": "Un nouveau Git Info a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Git Info avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Git Info avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Git Info {{ id }} ?"
+      },
+      "detail": {
+        "title": "Git Info"
+      },
+      "gitProjectId": "Git Project Id",
+      "gitProjectName": "Git Project Name",
+      "issueCount": "Issue Count"
+    }
+  }
+}

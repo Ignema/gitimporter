@@ -1,0 +1,31 @@
+{
+  "gitimporterApp": {
+    "issue": {
+      "home": {
+        "title": "Issues",
+        "createLabel": "Create a new Issue",
+        "createOrEditLabel": "Create or edit a Issue",
+        "notFound": "No Issues found"
+      },
+      "created": "A new Issue is created with identifier {{ param }}",
+      "updated": "A Issue is updated with identifier {{ param }}",
+      "deleted": "A Issue is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Issue {{ id }}?"
+      },
+      "detail": {
+        "title": "Issue"
+      },
+      "issueId": "Issue Id",
+      "issueOrder": "Issue Order",
+      "issueTitle": "Issue Title",
+      "state": "State",
+      "author": "Author",
+      "description": "Description",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At",
+      "closedAt": "Closed At",
+      "closedBy": "Closed By"
+    }
+  }
+}

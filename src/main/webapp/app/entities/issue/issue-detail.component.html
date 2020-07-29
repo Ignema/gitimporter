@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="issue">
+            <h2><span jhiTranslate="gitimporterApp.issue.detail.title">Issue</span> {{ issue.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gitimporterApp.issue.issueId">Issue Id</span></dt>
+                <dd>
+                    <span>{{ issue.issueId }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.issueOrder">Issue Order</span></dt>
+                <dd>
+                    <span>{{ issue.issueOrder }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.issueTitle">Issue Title</span></dt>
+                <dd>
+                    <span>{{ issue.issueTitle }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.state">State</span></dt>
+                <dd>
+                    <span>{{ issue.state }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.author">Author</span></dt>
+                <dd>
+                    <span>{{ issue.author }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.description">Description</span></dt>
+                <dd>
+                    <span>{{ issue.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.createdAt">Created At</span></dt>
+                <dd>
+                    <span>{{ issue.createdAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.updatedAt">Updated At</span></dt>
+                <dd>
+                    <span>{{ issue.updatedAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.closedAt">Closed At</span></dt>
+                <dd>
+                    <span>{{ issue.closedAt }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.issue.closedBy">Closed By</span></dt>
+                <dd>
+                    <span>{{ issue.closedBy }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/issue', issue.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

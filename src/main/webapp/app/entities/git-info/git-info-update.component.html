@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-git-info-heading" jhiTranslate="gitimporterApp.gitInfo.home.createOrEditLabel">Create or edit a Git Info</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gitimporterApp.gitInfo.gitProjectId" for="field_gitProjectId">Git Project Id</label>
+                    <input type="number" class="form-control" name="gitProjectId" id="field_gitProjectId"
+                           formControlName="gitProjectId"/>
+                    <div *ngIf="editForm.get('gitProjectId')!.invalid && (editForm.get('gitProjectId')!.dirty || editForm.get('gitProjectId')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gitProjectId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('gitProjectId')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gitimporterApp.gitInfo.gitProjectName" for="field_gitProjectName">Git Project Name</label>
+                    <input type="text" class="form-control" name="gitProjectName" id="field_gitProjectName"
+                           formControlName="gitProjectName"/>
+                    <div *ngIf="editForm.get('gitProjectName')!.invalid && (editForm.get('gitProjectName')!.dirty || editForm.get('gitProjectName')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('gitProjectName')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="gitimporterApp.gitInfo.issueCount" for="field_issueCount">Issue Count</label>
+                    <input type="number" class="form-control" name="issueCount" id="field_issueCount"
+                           formControlName="issueCount"/>
+                    <div *ngIf="editForm.get('issueCount')!.invalid && (editForm.get('issueCount')!.dirty || editForm.get('issueCount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('issueCount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('issueCount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

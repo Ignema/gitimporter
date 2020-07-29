@@ -47,6 +47,8 @@ public class CacheConfiguration {
             createCache(cm, com.gitimporter.domain.User.class.getName());
             createCache(cm, com.gitimporter.domain.Authority.class.getName());
             createCache(cm, com.gitimporter.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.gitimporter.domain.GitInfo.class.getName());
+            createCache(cm, com.gitimporter.domain.Issue.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

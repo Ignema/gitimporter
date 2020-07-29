@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="gitInfo">
+            <h2><span jhiTranslate="gitimporterApp.gitInfo.detail.title">Git Info</span> {{ gitInfo.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="gitimporterApp.gitInfo.gitProjectId">Git Project Id</span></dt>
+                <dd>
+                    <span>{{ gitInfo.gitProjectId }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.gitInfo.gitProjectName">Git Project Name</span></dt>
+                <dd>
+                    <span>{{ gitInfo.gitProjectName }}</span>
+                </dd>
+                <dt><span jhiTranslate="gitimporterApp.gitInfo.issueCount">Issue Count</span></dt>
+                <dd>
+                    <span>{{ gitInfo.issueCount }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/git-info', gitInfo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

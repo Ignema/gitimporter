@@ -1,0 +1,40 @@
+
+application {
+  config {
+    baseName gitimporter
+    applicationType monolith
+    buildTool gradle
+    packageName com.gitimporter
+  }
+  entities *
+}
+
+
+@filter
+@paginate(pagination)
+entity GitInfo {
+
+    gitProjectId Integer required
+    gitProjectName String required
+    issueCount Integer required
+
+}
+
+@filter
+@paginate(pagination)
+entity Issue {
+    issueId Integer required
+    issueOrder Integer required
+    issueTitle String required
+    state Boolean required
+    author String required
+    description String required
+    createdAt ZonedDateTime required
+    updatedAt ZonedDateTime required
+    closedAt ZonedDateTime
+    closedBy String
+}
+
+dto * with mapstruct
+service * with serviceClass
+
