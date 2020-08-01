@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 public class GitInfoConfiguration {
 
     @Bean
-    public GitInfoQueryService gitInfoQueryService(GitInfoRepository gitInfoRepository, GitInfoMapper gitInfoMapper) {
+    public GitInfoService gitInfoService(GitInfoRepository gitInfoRepository, GitInfoMapper gitInfoMapper) {
         return new GitInfoServiceImpl(gitInfoRepository, gitInfoMapper);
     }
 }

@@ -37,6 +37,10 @@ export class IssueService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
+  refresh(user: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(`${this.resourceUrl}/refresh`, user, { observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http

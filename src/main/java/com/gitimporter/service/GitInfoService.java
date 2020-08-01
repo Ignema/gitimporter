@@ -5,11 +5,10 @@ import com.gitimporter.repository.GitInfoRepository;
 import com.gitimporter.service.dto.GitInfoDTO;
 import com.gitimporter.service.mapper.GitInfoMapper;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,6 @@ public class GitInfoService {
 
     private final GitInfoMapper gitInfoMapper;
 
-    @Autowired
     public GitInfoService(GitInfoRepository gitInfoRepository, GitInfoMapper gitInfoMapper) {
         this.gitInfoRepository = gitInfoRepository;
         this.gitInfoMapper = gitInfoMapper;
@@ -53,9 +51,8 @@ public class GitInfoService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<GitInfoDTO> findAll(Pageable pageable) throws IOException {
+    public Page<GitInfoDTO> findAll(Pageable pageable) {
         log.debug("Request to get all GitInfos");
-
         return gitInfoRepository.findAll(pageable).map(gitInfoMapper::toDto);
     }
 
@@ -80,4 +77,6 @@ public class GitInfoService {
         log.debug("Request to delete GitInfo : {}", id);
         gitInfoRepository.deleteById(id);
     }
+
+    public void refresh(String user) throws IOException, ParseException {}
 }

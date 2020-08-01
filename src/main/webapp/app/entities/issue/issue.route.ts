@@ -11,6 +11,7 @@ import { IssueService } from './issue.service';
 import { IssueComponent } from './issue.component';
 import { IssueDetailComponent } from './issue-detail.component';
 import { IssueUpdateComponent } from './issue-update.component';
+import { RefreshResolver } from './refresh.resolver';
 
 @Injectable({ providedIn: 'root' })
 export class IssueResolve implements Resolve<IIssue> {
@@ -74,6 +75,18 @@ export const issueRoute: Routes = [
     component: IssueUpdateComponent,
     resolve: {
       issue: IssueResolve,
+    },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'gitimporterApp.issue.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/issues',
+    component: IssueUpdateComponent,
+    resolve: {
+      issue: RefreshResolver,
     },
     data: {
       authorities: [Authority.USER],

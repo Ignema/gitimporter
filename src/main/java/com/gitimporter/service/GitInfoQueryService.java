@@ -7,15 +7,10 @@ import com.gitimporter.service.dto.GitInfoCriteria;
 import com.gitimporter.service.dto.GitInfoDTO;
 import com.gitimporter.service.mapper.GitInfoMapper;
 import io.github.jhipster.service.QueryService;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.util.List;
 import javax.persistence.criteria.JoinType;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -37,7 +32,6 @@ public class GitInfoQueryService extends QueryService<GitInfo> {
 
     private final GitInfoMapper gitInfoMapper;
 
-    @Autowired
     public GitInfoQueryService(GitInfoRepository gitInfoRepository, GitInfoMapper gitInfoMapper) {
         this.gitInfoRepository = gitInfoRepository;
         this.gitInfoMapper = gitInfoMapper;
@@ -62,7 +56,7 @@ public class GitInfoQueryService extends QueryService<GitInfo> {
      * @return the matching entities.
      */
     @Transactional(readOnly = true)
-    public Page<GitInfoDTO> findByCriteria(GitInfoCriteria criteria, Pageable page) throws IOException, ParseException {
+    public Page<GitInfoDTO> findByCriteria(GitInfoCriteria criteria, Pageable page) {
         log.debug("find by criteria : {}, page: {}", criteria, page);
         final Specification<GitInfo> specification = createSpecification(criteria);
         return gitInfoRepository.findAll(specification, page).map(gitInfoMapper::toDto);

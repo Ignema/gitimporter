@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpResponse, HttpClient } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
@@ -25,12 +25,15 @@ export class GitInfoComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
 
+  field = 'ignema';
+
   constructor(
     protected gitInfoService: GitInfoService,
     protected activatedRoute: ActivatedRoute,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected http: HttpClient
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -51,6 +54,16 @@ export class GitInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.handleNavigation();
     this.registerChangeInGitInfos();
+  }
+
+  refresh(): void {
+    this.router.navigate(['/git-info/', this.field, 'refresh']);
+  }
+
+  update(): void {
+    const username = document.getElementById('username') as HTMLInputElement;
+
+    this.field = username.value;
   }
 
   protected handleNavigation(): void {

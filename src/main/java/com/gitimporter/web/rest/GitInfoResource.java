@@ -100,9 +100,21 @@ public class GitInfoResource {
     @GetMapping("/git-infos")
     public ResponseEntity<List<GitInfoDTO>> getAllGitInfos(GitInfoCriteria criteria, Pageable pageable) throws IOException, ParseException {
         log.debug("REST request to get GitInfos by criteria: {}", criteria);
+
         Page<GitInfoDTO> page = gitInfoQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    @PostMapping("/git-infos/refresh")
+    public String refreshGitInfo(@Valid @RequestBody String username) {
+        try {
+            gitInfoService.refresh(username);
+        } catch (Exception e) {
+            log.debug("refresh service failed: " + e);
+        }
+
+        return "";
     }
 
     /**
@@ -124,8 +136,9 @@ public class GitInfoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the gitInfoDTO, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/git-infos/{id}")
-    public ResponseEntity<GitInfoDTO> getGitInfo(@PathVariable Long id) {
+    public ResponseEntity getGitInfo(@PathVariable Long id) throws IOException, ParseException {
         log.debug("REST request to get GitInfo : {}", id);
+
         Optional<GitInfoDTO> gitInfoDTO = gitInfoService.findOne(id);
         return ResponseUtil.wrapOrNotFound(gitInfoDTO);
     }

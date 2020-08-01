@@ -11,6 +11,8 @@ import { GitInfoService } from './git-info.service';
 import { GitInfoComponent } from './git-info.component';
 import { GitInfoDetailComponent } from './git-info-detail.component';
 import { GitInfoUpdateComponent } from './git-info-update.component';
+import { RefreshResolver } from './refresh.resolver';
+import { IssueComponent } from '../issue/issue.component';
 
 @Injectable({ providedIn: 'root' })
 export class GitInfoResolve implements Resolve<IGitInfo> {
@@ -75,6 +77,27 @@ export const gitInfoRoute: Routes = [
     resolve: {
       gitInfo: GitInfoResolve,
     },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'gitimporterApp.gitInfo.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':name/refresh',
+    component: GitInfoComponent,
+    resolve: {
+      refresh: RefreshResolver,
+    },
+    data: {
+      authorities: [Authority.USER],
+      pageTitle: 'gitimporterApp.gitInfo.home.title',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/issues',
+    component: IssueComponent,
     data: {
       authorities: [Authority.USER],
       pageTitle: 'gitimporterApp.gitInfo.home.title',

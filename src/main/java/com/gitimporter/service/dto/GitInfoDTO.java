@@ -1,14 +1,11 @@
 package com.gitimporter.service.dto;
 
-import com.gitimporter.domain.GitInfo;
 import java.io.Serializable;
-import java.util.List;
 import javax.validation.constraints.*;
 
 /**
  * A DTO for the {@link com.gitimporter.domain.GitInfo} entity.
  */
-
 public class GitInfoDTO implements Serializable {
     private Long id;
 

@@ -23,6 +23,10 @@ export class GitInfoService {
     return this.http.put<IGitInfo>(this.resourceUrl, gitInfo, { observe: 'response' });
   }
 
+  refresh(user: string): Observable<HttpResponse<string>> {
+    return this.http.post<string>(`${this.resourceUrl}/refresh`, user, { observe: 'response' });
+  }
+
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IGitInfo>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

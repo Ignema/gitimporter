@@ -2,12 +2,19 @@
     <h2 id="page-heading">
         <span jhiTranslate="gitimporterApp.gitInfo.home.title">Git Infos</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-git-info" [routerLink]="['/git-info/new']">
+        <input #username id="username"  type="text" class="form-control w-10-m float-right" (change)="this.update()" placeholder="Username">
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-git-info mt-1 mb-1" [routerLink]="['/git-info/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="gitimporterApp.gitInfo.home.createLabel">
             Create a new Git Info
             </span>
         </button>
+
+        <button  class="btn btn-primary float-right mr-2 mt-1 mb-1" (click)="this.refresh()">
+            Refresh Data
+        </button>
+
     </h2>
 
     <jhi-alert-error></jhi-alert-error>
@@ -37,6 +44,13 @@
                     <td>{{ gitInfo.issueCount }}</td>
                     <td class="text-right">
                         <div class="btn-group">
+
+                            <button type="submit"
+                                    [routerLink]="['/git-info', gitInfo.gitProjectId, 'issues']"
+                                    class="btn btn-info btn-sm mr-4">
+                                See Issues
+                            </button>
+
                             <button type="submit"
                                     [routerLink]="['/git-info', gitInfo.id, 'view']"
                                     class="btn btn-info btn-sm">
