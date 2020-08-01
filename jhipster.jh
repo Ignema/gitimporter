@@ -26,7 +26,7 @@ entity Issue {
     issueId Integer required
     issueOrder Integer required
     issueTitle String required
-    state Boolean required
+    state String required
     author String required
     description String required
     createdAt ZonedDateTime required

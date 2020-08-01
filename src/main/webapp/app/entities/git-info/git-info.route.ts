@@ -12,6 +12,7 @@ import { GitInfoComponent } from './git-info.component';
 import { GitInfoDetailComponent } from './git-info-detail.component';
 import { GitInfoUpdateComponent } from './git-info-update.component';
 import { RefreshResolver } from './refresh.resolver';
+import { IssuesResolver } from './issues.resolver';
 import { IssueComponent } from '../issue/issue.component';
 
 @Injectable({ providedIn: 'root' })
@@ -98,6 +99,9 @@ export const gitInfoRoute: Routes = [
   {
     path: ':id/issues',
     component: IssueComponent,
+    resolve: {
+      refresh: IssuesResolver,
+    },
     data: {
       authorities: [Authority.USER],
       pageTitle: 'gitimporterApp.gitInfo.home.title',

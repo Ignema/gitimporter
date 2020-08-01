@@ -51,10 +51,6 @@ export class IssueComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.handleNavigation();
     this.registerChangeInIssues();
-
-    this.activatedRoute.data.subscribe(gitInfo => {
-      this.router.navigate(['/issue/', gitInfo.gitProjectId, 'refresh']);
-    });
   }
 
   protected handleNavigation(): void {

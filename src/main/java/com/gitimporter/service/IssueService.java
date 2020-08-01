@@ -4,7 +4,9 @@ import com.gitimporter.domain.Issue;
 import com.gitimporter.repository.IssueRepository;
 import com.gitimporter.service.dto.IssueDTO;
 import com.gitimporter.service.mapper.IssueMapper;
+import java.io.IOException;
 import java.util.Optional;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -75,4 +77,6 @@ public class IssueService {
         log.debug("Request to delete Issue : {}", id);
         issueRepository.deleteById(id);
     }
+
+    public void refresh(Integer id) throws ParseException, IOException {}
 }

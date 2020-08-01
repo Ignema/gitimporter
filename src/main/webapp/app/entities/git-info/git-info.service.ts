@@ -27,6 +27,13 @@ export class GitInfoService {
     return this.http.post<string>(`${this.resourceUrl}/refresh`, user, { observe: 'response' });
   }
 
+  issues(id: number): Observable<HttpResponse<string>> {
+    return this.http.post<string>(`${SERVER_API_URL}/api/issues/refresh`, id, {
+      headers: { 'Content-Type': 'application/json' },
+      observe: 'response',
+    });
+  }
+
   find(id: number): Observable<EntityResponseType> {
     return this.http.get<IGitInfo>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }

@@ -9,18 +9,18 @@ import { Observable, EMPTY } from 'rxjs';
 import { flatMap } from 'rxjs/operators';
 
 @Injectable()
-export class RefreshResolver implements Resolve<Observable<string>> {
+export class IssuesResolver implements Resolve<Observable<string>> {
   constructor(private service: GitInfoService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<string> {
-    const name = route.params['name'];
+    const id = route.params['id'];
 
-    return this.service.refresh(name).pipe(
+    return this.service.issues(id).pipe(
       flatMap((res: HttpResponse<string>) => {
         if (!res.body) {
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate(['/git-info']);
+          this.router.navigate(['/issue']);
 
           return EMPTY;
         } else {

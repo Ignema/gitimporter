@@ -1,7 +1,6 @@
 package com.gitimporter.service.dto;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import javax.validation.constraints.*;
 
 /**
@@ -28,13 +27,11 @@ public class IssueDTO implements Serializable {
     @NotNull
     private String description;
 
-    @NotNull
-    private ZonedDateTime createdAt;
+    private String createdAt;
 
-    @NotNull
-    private ZonedDateTime updatedAt;
+    private String updatedAt;
 
-    private ZonedDateTime closedAt;
+    private String closedAt;
 
     private String closedBy;
 
@@ -94,27 +91,27 @@ public class IssueDTO implements Serializable {
         this.description = description;
     }
 
-    public ZonedDateTime getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(ZonedDateTime createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public ZonedDateTime getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(ZonedDateTime updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public ZonedDateTime getClosedAt() {
+    public String getClosedAt() {
         return closedAt;
     }
 
-    public void setClosedAt(ZonedDateTime closedAt) {
+    public void setClosedAt(String closedAt) {
         this.closedAt = closedAt;
     }
 

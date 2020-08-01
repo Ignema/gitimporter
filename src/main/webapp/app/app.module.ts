@@ -15,6 +15,7 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { RefreshResolver } from './entities/git-info/refresh.resolver';
+import { IssuesResolver } from './entities/git-info/issues.resolver';
 
 @NgModule({
   imports: [
@@ -28,6 +29,6 @@ import { RefreshResolver } from './entities/git-info/refresh.resolver';
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
-  providers: [RefreshResolver],
+  providers: [RefreshResolver, IssuesResolver],
 })
 export class GitimporterAppModule {}

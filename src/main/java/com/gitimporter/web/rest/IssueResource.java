@@ -103,6 +103,17 @@ public class IssueResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @PostMapping("/issues/refresh")
+    public String refreshGitInfo(@Valid @RequestBody Integer id) {
+        try {
+            issueService.refresh(id);
+        } catch (Exception e) {
+            log.debug("refresh service failed: " + e);
+        }
+
+        return "";
+    }
+
     /**
      * {@code GET  /issues/count} : count all the issues.
      *
